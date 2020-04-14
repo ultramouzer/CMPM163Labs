@@ -22,7 +22,13 @@
 
       		var light = new THREE.PointLight(0xffffff, 1, 1000);
 			light.position.set(50, 50, 50);
+			var light2 = new THREE.PointLight(0x420690, 2, 1000);
+			light.position.set(69, 69, 69);
+			var light3 = new THREE.PointLight(0x177013, 3, 1000);
+			light.position.set(17, 70, 13);
 			scene.add(light);
+			scene.add(light2);
+			scene.add(light3);
 
 			var loader = new THREE.GLTFLoader();
 			var loader2 = new THREE.GLTFLoader();
@@ -41,8 +47,22 @@
 				console.error(error);
 			});
 
-			loader2.load('cat.glb', function (gltf) {
+			loader2.load('dog.glb', function (gltf) {
 				//adds model to scene
+				gltf.scene.position.x = 69;
+				gltf.scene.rotation.y = 420;
+				gltf.scene.scale.y = -1;
+
+				scene.add(gltf.scene);
+			}, function (xhr) {
+				console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
+			}, function (error) {
+				console.error(error);
+			});
+
+			loader2.load('rabbit.glb', function (gltf) {
+				//adds model to scene
+				gltf.scene.rotation.x = -1;
 
 				scene.add(gltf.scene);
 			}, function (xhr) {
