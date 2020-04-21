@@ -28,14 +28,18 @@
             scene.add(light);
 			scene.add(light2);
 
-			//initialize shader
+			//initialize shaders
 			THREE.Cache.enabled = true;
 			var count = 0;
+			var count2 = 0;
 			var loader = new THREE.FileLoader();
+			var loader2 = new THREE.FileLoader();
 			var fshader, vshader;
+			var fshader2, vshader2;
 
-			//add cooler looking cube
+			//add cooler looking cubes
 			var geometry4, material4, mesh4;
+			var geometry5, material5, mesh5;
 
 			function addCoolCube() {
 				if(count == 2) {
@@ -60,13 +64,54 @@
 				}	
 			}
 
+			function addCoolCube2() {
+				if(count == 2) {
+					let uniforms = {
+						colorB: {type: 'vec3', value: new 
+							THREE.Color(0x420690)},
+						colorA: {type: 'vec3', value: new 
+							THREE.Color(0x177013)}
+					};
+
+					geometry5 = new THREE.BoxGeometry(1, 1, 1);
+					material5 =  new THREE.ShaderMaterial({
+						uniforms: uniforms,
+						fragmentShader: fshader,
+						vertexShader: vshader,
+						precision: "mediump"
+					});
+					cube5 = new THREE.Mesh(geometry5, material5);
+					cube5.position.x = -2;
+					cube5.position.y = 2;
+					scene.add(cube5);
+				}	
+			}
+
 
 			//load vertex shader
 			loader.load('shaders/vertexShader.vert',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					vshader = data;
+					count += 1;
+					addCoolCube();
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+			});
+
+			//load fragment shader
+			loader.load('shaders/fragmentShader.frag',
 			// onLoad callback
 			function (data) {
 				console.log(data); // output the text to the console
-				vshader = data;
+				fshader = data;
 				count += 1;
 				addCoolCube();
 			},
@@ -79,14 +124,32 @@
 				console.error('An error happened');
 			});
 
-			//load fragment shader
-			loader.load('shaders/fragmentShader.frag',
+			//load 2nd vertex shader
+			loader2.load('shaders/vertexShader2.vert',
+				// onLoad callback
+				function (data) {
+					console.log(data); // output the text to the console
+					vshader2 = data;
+					count2 += 1;
+					addCoolCube2();
+				},
+				// onProgress callback
+				function (xhr) {
+					console.log((xhr.loaded/xhr.total * 100)+ '% loaded');
+				},
+				// onError callback
+				function (err) {
+					console.error('An error happened');
+			});
+
+			//load 2nd fragment shader
+			loader2.load('shaders/fragmentShader2.frag',
 			// onLoad callback
 			function (data) {
 				console.log(data); // output the text to the console
-				fshader = data;
-				count += 1;
-				addCoolCube();
+				fshader2 = data;
+				count2 += 1;
+				addCoolCube2();
 			},
 			// onProgress callback
 			function (xhr) {
@@ -131,8 +194,15 @@
 				geometry3.rotateZ(0.20);
 				geometry3.rotateX(0.69);
 
-				geometry4.rotateX(0.01);
-				geometry4.rotateY(0.01);
+				if(geometry4) {
+					geometry4.rotateX(0.01);
+					geometry4.rotateY(0.01);
+				}
+
+				if(geometry5) {
+					geometry5.rotateX(-0.01);
+					geometry5.rotateY(-0.01);
+				}
 			}
 			animate();
 		</script>
