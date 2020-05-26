@@ -420,12 +420,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: 1212380520111254, guid: 562df8355904213468a690c4ce6740b6, type: 3}
-  - {fileID: 1934853517836424, guid: 931ecb32d754b3f40afc9a688c8cea66, type: 3}
-  - {fileID: 1199332134306268, guid: 1e198ff9400b5064c816d8f779eff296, type: 3}
+  - {fileID: 1228088659953116, guid: 80c5916b9606ce646be16611d9a06d13, type: 3}
+  - {fileID: 7141591058240814676, guid: 933ba8139a067fb4eab59e89d05b8345, type: 3}
+  - {fileID: 5642356748677593766, guid: a71c5e4eeda432e4e9bdf0e482a961be, type: 3}
+  - {fileID: 1276862051916332, guid: 1be61187b5d765449be824463642cb0f, type: 3}
   - {fileID: 1421433746022104, guid: 84bb406b82cecb24cb1ffe5d4359339d, type: 3}
   - {fileID: 1681277682126416, guid: bbad862e7e06efe4a8ad0346a53e3cde, type: 3}
-  - {fileID: 7141591058240814676, guid: 933ba8139a067fb4eab59e89d05b8345, type: 3}
   mapWidth: 20
   mapHeight: 20
 --- !u!4 &1808791493
